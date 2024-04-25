@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body class="body">
+    <table>
+
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Status</th>
+
+        </tr>
+       
+    </table>
+  </body>
+  <script>
+
+const userAction = async () => {
+  const response = await fetch('http://localhost:3000/api/shipping/orders');
+  const myJson = await response.json(); 
+  
+
+  const body = document.querySelector("table");
+  
+  myJson.forEach(order => {
+    let s = `
+        <tr>
+            <th>${order.order_id}</th>
+            <th>${order.order_date}</th>
+            <th>${order.order_status}</th>
+
+        </tr>`
+    body.innerHTML+= s;
+    
+  });
+}
+userAction();
+
+  </script>
+
+
+</html>
